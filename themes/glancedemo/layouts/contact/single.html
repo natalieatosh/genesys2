@@ -1,0 +1,179 @@
+{{ define "main" }}
+<script id="glance-cobrowse" type="text/javascript"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
+data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
+data-groupid="20885" data-site="production"
+data-presence="on" data-visitorid="75001234" agentvideo=1 charset="UTF-8"></script>
+{{ partial "jumbotron" . }}
+<div class="container">
+    <div class="row">
+        <!-- Section Titile -->
+        <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
+            <h2>We're here to help</h2>
+            <p>Connect with a lending specialist and start your journey into a new home.</p>
+            <div class="find-widget">
+                Company: <a href="https://hostriver.ro">Global Home Lending</a>
+            </div>
+            <div class="find-widget">
+                Address: <a href="#">4435 Berkshire Circle Knoxville</a>
+            </div>
+            <div class="find-widget">
+                Phone: <a href="#">800-555-2222</a>
+            </div>
+            <div class="find-widget">
+                Website: <a href="https://chasehldemo.glance.net/">chasehldemo.glance.net</a>
+            </div>
+            <div class="find-widget">
+                Program: <a href="#">Mon to Sat: 09:30 AM - 10.30 PM</a>
+            </div>
+        </div>
+        <!-- contact form -->
+        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
+            <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
+                <!-- Name -->
+                <div class="form-group label-floating">
+                    <label class="control-label" for="name">Name</label>
+                    <input class="form-control" id="name" type="text" name="name" required data-error="Please enter your name">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <!-- email -->
+                <div class="form-group label-floating">
+                    <label class="control-label" for="email">Email</label>
+                    <input class="form-control" id="email" type="email" name="email" required data-error="Please enter your Email">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <!-- Subject -->
+                <div class="form-group label-floating">
+                    <label class="control-label">Subject</label>
+                    <input class="form-control" id="msg_subject" type="text" name="subject" required data-error="Please enter your message subject">
+                    <div class="help-block with-errors"></div>
+                </div>
+                <!-- Message -->
+                <div class="form-group label-floating">
+                    <label for="message" class="control-label">Message</label>
+                    <textarea class="form-control" rows="3" id="message" name="message" required data-error="Write your message"></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <!-- Form Submit -->
+                <div class="form-submit mt-5">
+                    <button class="btn btn-success" type="submit" id="form-submit"><i class="material-icons mdi mdi-message-outline"></i> Send Message</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style type='text/css'>
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #005290;
+    font-family: "Arial", sans-serif;
+}
+
+.embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid #005290;
+}
+</style>
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+var initESW = function(gslbBaseURL) {
+    embedded_svc.settings.displayHelpButton = true; //Or false
+    embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+    //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+    //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+    //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+    //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+    // Settings for Chat
+    //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+    // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+    // Returns a valid button ID.
+    //};
+    //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+    //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+    //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+    embedded_svc.settings.entryFeature = 'LiveAgent';
+    var visitor;
+
+    function messageListener(e) {
+        if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
+            var key = e.data.split(':')[1];
+            GLANCE.Cobrowse.Visitor.startSession(key);
+        }
+        if (e.data) {
+            if (e.data.data) {
+                // Chat started.
+                if (e.data.data.event == 'chasitorChatEstablished') {
+                    if (e.data.data.chasitorData) {
+                        var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
+                        console.log('Chat Start - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                // Chat restarted.
+                else if (e.data.method == 'liveagent.restored') {
+                    if (e.data.data.chasitorSessionData) {
+                        var visitorid =
+                            e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
+                        console.log('Chat Restart - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                // Chat timed out.
+                else if (e.data.data.event == 'chasitorIdleTimeout') {
+                    if (visitor) {
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+                // Chat ended.
+                else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
+                    if (visitor) {
+                        console.log('Chat End');
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+            }
+        }
+    }
+    if (window.addEventListener) {
+        addEventListener('message', messageListener, false);
+    } else {
+        attachEvent('onmessage', messageListener);
+    }
+    embedded_svc.init(
+        'https://chasedemo.my.salesforce.com',
+        'https://chasedemo.secure.force.com/liveAgentSetupFlow',
+        gslbBaseURL,
+        '00D6g0000025fMr',
+        'Sales', {
+            baseLiveAgentContentURL: 'https://c.la1-c2-ia5.salesforceliveagent.com/content',
+            deploymentId: '5726g000000U77j',
+            buttonId: '5736g000000U7oE',
+            baseLiveAgentURL: 'https://d.la1-c2-ia5.salesforceliveagent.com/chat',
+            eswLiveAgentDevName: 'Sales',
+            isOfflineSupportEnabled: true
+        }
+    );
+};
+if (!window.embedded_svc) {
+    var s = document.createElement('script');
+    s.setAttribute('src', 'https://chasedemo.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+    s.onload = function() {
+        initESW(null);
+    };
+    document.body.appendChild(s);
+} else {
+    initESW('https://service.force.com');
+}
+</script>
+{{ end }}

@@ -1,0 +1,135 @@
+.homepage-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(/img/house.jpg);
+    -webkit-background-size: cover;
+    background-position: center center;
+    height: 500px;
+    color: #fff;
+    border-radius: 0px;
+    position: relative;
+
+    .banner-container {
+        display: block;
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+header {
+    .bg-solid {
+        background-color: $main-color;
+    }
+
+    .navbar-expand-lg {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+
+        img {
+            width: 160px;
+            height: auto;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
+
+.signin {
+    font-size: 1rem;
+    display: inline-block;
+    text-transform: capitalize;
+    a {
+        color: #fff;
+        &:hover {
+            color: #81ddff;
+            text-decoration: none;
+        }
+    }  
+}
+
+.navbar-dark .navbar-nav>.active> a, 
+.navbar-dark .navbar-nav>.active> a:focus, 
+.navbar-dark .navbar-nav>.active> a:hover {
+  border-bottom: 2px solid #0082aa;
+  padding-bottom: 3px;
+}
+
+.hp-tabs {
+	font-size: 1.2rem;
+	margin-top: -20px;
+}
+.sub-nav {
+	font-size: 1.5rem;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
+
+.tagline {
+	font-size: 2.1rem;
+}
+
+form#login {
+    position: absolute;
+    z-index: 100;
+    min-width: 240px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 0 0 4px 4px;
+    right: 20px;
+
+    .forgot {
+        font-size: .85rem;
+    }
+    .form-check {
+        margin-top: -10px;
+    }
+}
+form#login-mobile {
+    padding: 10px 0 150px 0;
+    border-radius: 0 0 4px 4px;
+    right: 20px;
+        text-align: center;
+
+    .forgot {
+        font-size: .85rem;
+    }
+    .form-check {
+        margin-top: -10px;
+    }
+    a {
+        color: #fff;
+    }
+    .btn-primary {
+        margin: 20px 0 20px 0;
+        font-size: 1.3rem;
+        width: 200px;
+    }
+    h2 {
+        color: #fff;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    .form-check {
+        color: #fff;
+        margin: 20px 0;
+    }
+}
+.page-signin {
+    height: 100vh;
+    background: #0846a8;
+}
+
+.homepg-cards {
+    margin-bottom: 30px;
+}

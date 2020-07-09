@@ -1,0 +1,472 @@
+<script>
+    /* containers */
+var dmForm = document.getElementById('dm-form-container');
+var dmChart = document.getElementById('dm-chart-container');
+
+/* buttons */
+var dmSubmit = document.getElementById('dm-submit');
+
+/* regex */
+var dmAmountRegex = /^\d+(\.\d{2})?$/;
+var dmRateRegex = /^\d+(\.\d{2})?$/;
+var dmTermRegex = /^\d{1,2}$/;
+
+/* animation event listener array */
+var endAnimation = ['webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend', 'animationend'];
+
+/* chart values */
+var dmPrinciple;
+var dmInterest;
+
+/* Empty boxes error message */
+var dmEmptyError = document.getElementById('dm-empty'); //made this global because it is used multiple times
+
+/* when the form submit button is clicked */
+function submitForm() {
+    dmSubmit.onclick = function dmCalculate() {
+        /* get values from input boxes */
+        var dmAmount = document.getElementById('dm-amount').value;
+        var dmRate = document.getElementById('dm-rate').value;
+        var dmTerm = document.getElementById('dm-term').value;
+        var dmPaymentFrequency = document.getElementById('dm-payment-frequency').value;
+
+        var dmAmountValidate = validateAmount(dmAmount); //validated the amount input
+        var dmRateValidate = validateRate(dmRate); //validate the rate input
+        var dmTermValidate = validateTerm(dmTerm); //validate the term input
+
+        if (dmAmountValidate === true && dmRateValidate === true && dmTermValidate === true) {
+
+          /* Set chart values */
+          dmPrinciple = Number(dmAmount); //Set the global principle variable for the chart
+
+          /* Calculate Payment */
+          dmCalculatePayment(dmAmount, dmRate, dmTerm, dmPaymentFrequency);
+
+          /* Animations */
+          dmForm.className = "dm-form-container dm-animated fadeOutDown"; // adds the animation classes to remove container
+
+          /*
+           * Uses the 'one' function to check if animation has happened.
+           * If the animation has happened then the function
+           * removes the animation classes and adds the hidden class.
+           * Need to do one for each vendor prefix for full browser support.
+           */
+          for (var i = 0; i < endAnimation.length; i++) { //loop through each vendor prefix
+            one(dmForm, endAnimation[i], function(event) {
+              dmForm.className = "dm-form-container dm-hidden"; //hide the form container
+              dmChart.className = "dm-chart-container dm-animated fadeInDown"; //animate the chart container to come into view
+              drawChart(); //draw the chart
+            });
+          } //end for loop
+        } //end validate if
+      } //end on click
+  } //end submit form function
+
+/* checks if event has happened or not */
+function one(element, eventName, callback) {
+  element.addEventListener(eventName, function handler(event) {
+    element.removeEventListener(eventName, handler);
+    callback(event);
+  });
+}
+
+/* calculate monthly payment */
+function dmCalculatePayment(amount, rate, term, frequency) {
+    var monthlyPayment;
+    var yearlyPayment;
+    var monthlyRate = (Number(rate) / 100) / 12; //calculate monthly interest rate
+    var numMonths = Number(term) * 12; //calculate the number of months
+    amount = Number(amount);
+
+    // calculate monthly payment
+    monthlyPayment = amount * ((monthlyRate * (Math.pow((1 + monthlyRate), numMonths))) / (Math.pow((1 + monthlyRate), numMonths) - 1));
+
+    //calculation depending on frequency eg. monthly, weekly, etc
+    if (frequency === 'monthly') {
+      //display monthly payment
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + monthlyPayment.toFixed(2) + '</span> per month';
+
+      //multiply the monthly payment by the number of months
+      yearlyPayment = monthlyPayment * (numMonths);
+      //display overall payment
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      //get the amount of interest to be payed
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'semimonthly') {
+      var semiMonthlyPayment = monthlyPayment / 2;
+
+      //display semi-monthly payment
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + semiMonthlyPayment.toFixed(2) + '</span> twice per month';
+
+      //multiply the monthly payment by the number of months
+      yearlyPayment = monthlyPayment * (numMonths);
+      //display overall payment
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      //get the amount of interest to be payed
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'weekly') {
+      var weeklyPayment = (monthlyPayment * 12) / 52;
+
+      //display weekly payment
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + weeklyPayment.toFixed(2) + '</span> per week';
+
+      //multiply the monthly payment by the number of months
+      yearlyPayment = monthlyPayment * (numMonths);
+      //display overall payment
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      //get the amount of interest to be payed
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'biweekly') {
+      var biweeklyPayment = (monthlyPayment * 12) / 26;
+
+      //display biweekly payment
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + biweeklyPayment.toFixed(2) + '</span> every two weeks';
+
+      //multiply the monthly payment by the number of months
+      yearlyPayment = monthlyPayment * (numMonths);
+      //display overall payment
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      //get the amount of interest to be payed
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    }
+  } //end calculate payment function
+
+/* validation */
+function validateAmount(amount) { //function takes the input value
+    var dmAmountBox = document.getElementById('dm-amount'); //get input box element
+    var dmAmountError = document.getElementById('dm-amount-error');
+    var validation = false; //initial return value
+
+    dmAmountError.className = "dm-error dm-hidden"; //ensure the error message is hidden by default
+
+    if (amount === '') { //check if empty
+      dmAmountBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+      dmEmptyError.className = 'dm-error'; //display the empty error
+    } else { //if not empty check if regex match
+      if (dmAmountRegex.test(amount)) { //if regex returns true
+        dmAmountBox.className = 'dm-form-input'; //remove highlight
+        validation = true; //set return value to true
+      } else { //if regex returns false
+        dmAmountBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+        dmAmountError.className = 'dm-error'; //display the error message
+        validation = false;
+      }
+    }
+
+    return validation;
+  } //end validateAmount function
+
+function validateRate(rate) { //function takes the input value
+    var dmRateBox = document.getElementById('dm-rate'); //get input box element
+    var dmRateError = document.getElementById('dm-rate-error');
+    var validation = false; //initial return value
+
+    dmRateError.className = "dm-error dm-hidden"; //ensure the error message is hidden by default
+
+    if (rate === '') { //check if empty
+      dmRateBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+      dmEmptyError.className = 'dm-error'; //display the empty error
+    } else { //if not empty check if regex match
+      if (dmRateRegex.test(rate)) { //if regex returns true
+        dmRateBox.className = 'dm-form-input'; //remove highlight
+        validation = true; //set return value to true
+      } else { //if regex returns false
+        dmRateBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+        dmRateError.className = 'dm-error'; //display the error message
+        validation = false;
+      }
+    }
+
+    return validation;
+  } //end validateRate function
+
+function validateTerm(term) { //function takes the input value
+    var dmTermBox = document.getElementById('dm-term'); //get input box element
+    var dmTermError = document.getElementById('dm-term-error');
+    var validation = false; //initial return value
+
+    dmTermError.className = "dm-error dm-hidden"; //ensure the error message is hidden by default
+
+    if (term === '') { //check if empty
+      dmTermBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+      dmEmptyError.className = 'dm-error'; //display the empty error
+    } else { //if not empty check if regex match
+      if (dmTermRegex.test(term)) { //if regex returns true
+        dmTermBox.className = 'dm-form-input'; //remove highlight
+        validation = true; //set return value to true
+      } else { //if regex returns false
+        dmTermBox.className = 'dm-form-input dm-highlight-box'; //highlight box
+        dmTermError.className = 'dm-error'; //display the error message
+        validation = false;
+      }
+    }
+
+    return validation;
+  } //end validateTerm function
+
+/*
+ * GOOGLE CHARTS
+ */
+
+// Load the Visualization API and the chart package.
+google.load('visualization', '1.0', {
+  'packages': ['corechart']
+});
+
+// Set a callback to run when the Google Visualization API is loaded.
+/*google.setOnLoadCallback(drawChart);*/
+if(dmSubmit) {
+  google.setOnLoadCallback(submitForm);
+}
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+
+  // Create the data table.        
+  var data = google.visualization.arrayToDataTable([
+    ['Payment', 'Principle ($)', 'Interest ($)', {
+      role: 'annotation'
+    }],
+    ['Mortgage Term', dmPrinciple, dmInterest, '']
+  ]);
+
+  // Set chart options
+  var options = {
+    'width': 250,
+    'height': 300,
+    legend: {
+      position: 'top',
+      maxLines: 2
+    },
+    bar: {
+      groupWidth: '75%'
+    },
+    isStacked: true
+  };
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.ColumnChart(document.getElementById('dm-chart'));
+  chart.draw(data, options);
+}    
+</script>
+<div class="row">
+    <div class="col-md-7 col-12">
+        <div class="row welcome">
+            <div class="col-6">
+                <p class="welcome-name">Welcome Jennifer</p>
+            </div>
+            <div class="col-6 signout text-right">
+                <a href="/"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="ml-2">Sign Out</span></a>
+            </div>
+        </div>
+        <div class="card shadow border-0 account-card">
+            <div class="card-body">
+                <h2 class="mb-3">Your Mortgage</h2>
+                <div class="row border box-payment">
+                    <div class="col-md-7 col-6">
+                        <h4 class="card-title">Upcoming Payment<br> <strong>$1,654.87</strong></h4>
+                    </div>
+                    <div class="col-md-5 col-6 text-right mt-3"><a href="#" class="btn btn-primary btn-lg payment-btn">Make a Payment »</a></div>
+                    <div class="col-12 mt-3">
+                        <div class="row ml-1 mb-3">
+                            <div class="col-sm">
+                                <p>Payment Due Date:<br><strong>Mar 12, 2020</strong></p>
+                            </div>
+                            <div class="col-sm">
+                                <p>Last Payment Received:<br><strong>Feb 18, 2020</strong></p>
+                            </div>
+                            <div class="col-sm text-center auto-pay">
+                                <p>Autopay ON<br><a href="#">EDIT</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow border-0 mt-3 account-card">
+            <div class="card-body">
+                <h2 class="mb-2">Activity</h2>
+                <div class="row ">
+                    <div class="col-12">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">March 12</th>
+                                    <td>Your $1,654.87 monthly autopay payment is scheduled.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">February 12</th>
+                                    <td>Your $1,654.87 payment has been applied.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">January 12</th>
+                                    <td colspan="2">Your $1,654.87 payment has been applied.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="#"><button type="button" class="btn btn-light btn-lg">More Activity »</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow border-0 mt-3 account-card">
+            <div class="card-body">
+                <h2 class="mb-2">Mortgage Calculator</h2>
+                <div class="row mr-1 ml-1">
+                    <form class="form-horizontal well" name="MortgageMinder">
+                        <div class="control-group">
+                            <label class="control-label">House Price</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="7" value="750000" name="price"></input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Interest Rate</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="6" name="ir"></input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Years</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="30" name="term">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Down Payment</label>
+                            <div class="controls">
+                                <input type="text" size="7" onchange="calculatePayment(this.form)" value="0" name="dp">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="button" class="btn btn-primary btn-large mt-3" onclick="cmdCalc_Click(this.form)" value="Calculate" name="cmdCalc">
+                                </input>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 style="letter-spacing:0; margin-top:10px;">Results:</strong></h5>
+                        <div class="control-group">
+                            <label class="control-label">Mortgage Principle</label>
+                            <div class="controls">
+                                <input type="text" size="7" placeholder="Automatically Calculated" name="principle">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Total Payments</label>
+                            <div class="controls">
+                                <input type="text" size="6" placeholder="Your Number Of Payments Are" name="payments">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Monthly Payment</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Monthly Payments" size="7" name="pmt">
+                                </input>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-12">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2>Thinking of a new home?</h2>
+                <a href="/application"><button type="button" class="btn btn-primary mt-1 mb-2">Get Pre-Approved »</button></a>
+                <hr>
+                <h2>What are your plans for 2020?</h2>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1">
+                        I'm thinking about buying a home
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        I'm actively searching for a new home
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
+                        I've found a great home, and I'm ready to make an offer
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                        I'd like to use the value in my home to remodel, consolidate debt or increase my emergency fund
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                        I'm not looking to make any changes right now
+                    </label>
+                </div>
+                <button type="button" class="btn btn-success mt-3 mb-4">Submit</button>
+                <hr>
+                <h2 class="headline headlineC1">We’re here to help</h2>
+                <div class="asideContact">
+                    <p class="description">If you have questions about your Global Home Lending account, <a href="tel:8005552222">call us at 800-555-2222</a></p>
+                    <p class="schedule"><strong>Monday through Friday</strong> 8 a.m. to 8 p.m., Eastern time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="rendered-js">
+function checkForZero(field) {
+    if (field.value == 0 || field.value.length == 0) {
+        alert("This field can't be 0!");
+        field.focus();
+    } else
+
+        calculatePayment(field.form);
+}
+
+function cmdCalc_Click(form) {
+    if (form.price.value == 0 || form.price.value.length == 0) {
+        alert("The Price field can't be 0!");
+        form.price.focus();
+    } else
+    if (form.ir.value == 0 || form.ir.value.length == 0) {
+        alert("The Interest Rate field can't be 0!");
+        form.ir.focus();
+    } else
+    if (form.term.value == 0 || form.term.value.length == 0) {
+        alert("The Term field can't be 0!");
+        form.term.focus();
+    } else
+
+        calculatePayment(form);
+}
+
+function calculatePayment(form) {
+    princ = form.price.value - form.dp.value;
+    intRate = form.ir.value / 100 / 12;
+    months = form.term.value * 12;
+    form.pmt.value = Math.floor(princ * intRate / (1 - Math.pow(1 + intRate, -1 * months)) * 100) / 100;
+    form.principle.value = princ;
+    form.payments.value = months;
+}
+//# sourceURL=pen.js
+</script>

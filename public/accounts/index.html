@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html><head>
+  <title>Your Account</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="noindex,nofollow">
+
+<style type='text/css'>
+    .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #005290;
+        font-family: "Arial", sans-serif;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #005290;
+    }
+</style>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../css/theme.css"/>
+
+  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/> 
+
+  <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
+
+  <link rel="alternate" type="application/rss+xml+xml" href="../accounts/index.xml" title="Global Home Lending" />
+  </style>
+
+</head><body class="d-flex flex-column">
+    	  <div id="page-content"><header id="header" class="header clearfix">
+    <div class="bg-gradient">
+        <div class="bg-solid bluebg">
+            <div class="inner">
+                <div class="container top-nav">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="../"><img src="../img/global-logo.svg" alt="Global Home Lending"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                
+                                
+                                
+                                <li class="navbar-item  active">
+                                    <a class="nav-link" href="../accounts/" title="">Accounts</a>
+                                </li>
+                                
+                                
+                                
+                                <li class="navbar-item ">
+                                    <a class="nav-link" href="../about/" title="">About</a>
+                                </li>
+                                
+                                
+                                
+                                <li class="navbar-item ">
+                                    <a class="nav-link" href="../application/" title="">Apply</a>
+                                </li>
+                                
+                                
+                                
+                                <li class="navbar-item ">
+                                    <a class="nav-link" href="../contact/" title="">Contact</a>
+                                </li>
+                                
+                                
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="content">
+<div class="container">
+  <h1 class="mt-4">Your Account</h1>
+
+  <p><script id="glance-cobrowse" type="text/javascript"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
+data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
+data-groupid="20885" data-site="production"
+data-presence="on" data-visitorid="75001234" agentvideo=1 charset="UTF-8"></script>
+<script>
+ 
+var dmForm = document.getElementById('dm-form-container');
+var dmChart = document.getElementById('dm-chart-container');
+
+ 
+var dmSubmit = document.getElementById('dm-submit');
+
+ 
+var dmAmountRegex = /^\d+(\.\d{2})?$/;
+var dmRateRegex = /^\d+(\.\d{2})?$/;
+var dmTermRegex = /^\d{1,2}$/;
+
+ 
+var endAnimation = ['webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend', 'animationend'];
+
+ 
+var dmPrinciple;
+var dmInterest;
+
+ 
+var dmEmptyError = document.getElementById('dm-empty'); 
+
+ 
+function submitForm() {
+    dmSubmit.onclick = function dmCalculate() {
+         
+        var dmAmount = document.getElementById('dm-amount').value;
+        var dmRate = document.getElementById('dm-rate').value;
+        var dmTerm = document.getElementById('dm-term').value;
+        var dmPaymentFrequency = document.getElementById('dm-payment-frequency').value;
+
+        var dmAmountValidate = validateAmount(dmAmount); 
+        var dmRateValidate = validateRate(dmRate); 
+        var dmTermValidate = validateTerm(dmTerm); 
+
+        if (dmAmountValidate === true && dmRateValidate === true && dmTermValidate === true) {
+
+           
+          dmPrinciple = Number(dmAmount); 
+
+           
+          dmCalculatePayment(dmAmount, dmRate, dmTerm, dmPaymentFrequency);
+
+           
+          dmForm.className = "dm-form-container dm-animated fadeOutDown"; 
+
+          
+
+          for (var i = 0; i < endAnimation.length; i++) { 
+            one(dmForm, endAnimation[i], function(event) {
+              dmForm.className = "dm-form-container dm-hidden"; 
+              dmChart.className = "dm-chart-container dm-animated fadeInDown"; 
+              drawChart(); 
+            });
+          } 
+        } 
+      } 
+  } 
+
+ 
+function one(element, eventName, callback) {
+  element.addEventListener(eventName, function handler(event) {
+    element.removeEventListener(eventName, handler);
+    callback(event);
+  });
+}
+
+ 
+function dmCalculatePayment(amount, rate, term, frequency) {
+    var monthlyPayment;
+    var yearlyPayment;
+    var monthlyRate = (Number(rate) / 100) / 12; 
+    var numMonths = Number(term) * 12; 
+    amount = Number(amount);
+
+    
+    monthlyPayment = amount * ((monthlyRate * (Math.pow((1 + monthlyRate), numMonths))) / (Math.pow((1 + monthlyRate), numMonths) - 1));
+
+    
+    if (frequency === 'monthly') {
+      
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + monthlyPayment.toFixed(2) + '</span> per month';
+
+      
+      yearlyPayment = monthlyPayment * (numMonths);
+      
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'semimonthly') {
+      var semiMonthlyPayment = monthlyPayment / 2;
+
+      
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + semiMonthlyPayment.toFixed(2) + '</span> twice per month';
+
+      
+      yearlyPayment = monthlyPayment * (numMonths);
+      
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'weekly') {
+      var weeklyPayment = (monthlyPayment * 12) / 52;
+
+      
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + weeklyPayment.toFixed(2) + '</span> per week';
+
+      
+      yearlyPayment = monthlyPayment * (numMonths);
+      
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    } else if (frequency === 'biweekly') {
+      var biweeklyPayment = (monthlyPayment * 12) / 26;
+
+      
+      document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + biweeklyPayment.toFixed(2) + '</span> every two weeks';
+
+      
+      yearlyPayment = monthlyPayment * (numMonths);
+      
+      document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
+
+      
+      dmInterest = yearlyPayment - amount;
+      dmInterest = Number(dmInterest.toFixed(2));
+    }
+  } 
+
+ 
+function validateAmount(amount) { 
+    var dmAmountBox = document.getElementById('dm-amount'); 
+    var dmAmountError = document.getElementById('dm-amount-error');
+    var validation = false; 
+
+    dmAmountError.className = "dm-error dm-hidden"; 
+
+    if (amount === '') { 
+      dmAmountBox.className = 'dm-form-input dm-highlight-box'; 
+      dmEmptyError.className = 'dm-error'; 
+    } else { 
+      if (dmAmountRegex.test(amount)) { 
+        dmAmountBox.className = 'dm-form-input'; 
+        validation = true; 
+      } else { 
+        dmAmountBox.className = 'dm-form-input dm-highlight-box'; 
+        dmAmountError.className = 'dm-error'; 
+        validation = false;
+      }
+    }
+
+    return validation;
+  } 
+
+function validateRate(rate) { 
+    var dmRateBox = document.getElementById('dm-rate'); 
+    var dmRateError = document.getElementById('dm-rate-error');
+    var validation = false; 
+
+    dmRateError.className = "dm-error dm-hidden"; 
+
+    if (rate === '') { 
+      dmRateBox.className = 'dm-form-input dm-highlight-box'; 
+      dmEmptyError.className = 'dm-error'; 
+    } else { 
+      if (dmRateRegex.test(rate)) { 
+        dmRateBox.className = 'dm-form-input'; 
+        validation = true; 
+      } else { 
+        dmRateBox.className = 'dm-form-input dm-highlight-box'; 
+        dmRateError.className = 'dm-error'; 
+        validation = false;
+      }
+    }
+
+    return validation;
+  } 
+
+function validateTerm(term) { 
+    var dmTermBox = document.getElementById('dm-term'); 
+    var dmTermError = document.getElementById('dm-term-error');
+    var validation = false; 
+
+    dmTermError.className = "dm-error dm-hidden"; 
+
+    if (term === '') { 
+      dmTermBox.className = 'dm-form-input dm-highlight-box'; 
+      dmEmptyError.className = 'dm-error'; 
+    } else { 
+      if (dmTermRegex.test(term)) { 
+        dmTermBox.className = 'dm-form-input'; 
+        validation = true; 
+      } else { 
+        dmTermBox.className = 'dm-form-input dm-highlight-box'; 
+        dmTermError.className = 'dm-error'; 
+        validation = false;
+      }
+    }
+
+    return validation;
+  } 
+
+
+
+
+
+google.load('visualization', '1.0', {
+  'packages': ['corechart']
+});
+
+
+ 
+if(dmSubmit) {
+  google.setOnLoadCallback(submitForm);
+}
+
+
+
+
+function drawChart() {
+
+  
+  var data = google.visualization.arrayToDataTable([
+    ['Payment', 'Principle ($)', 'Interest ($)', {
+      role: 'annotation'
+    }],
+    ['Mortgage Term', dmPrinciple, dmInterest, '']
+  ]);
+
+  
+  var options = {
+    'width': 250,
+    'height': 300,
+    legend: {
+      position: 'top',
+      maxLines: 2
+    },
+    bar: {
+      groupWidth: '75%'
+    },
+    isStacked: true
+  };
+
+  
+  var chart = new google.visualization.ColumnChart(document.getElementById('dm-chart'));
+  chart.draw(data, options);
+}    
+</script>
+
+<div class="row">
+    <div class="col-8 col-sm">
+        <div class="row welcome">
+            <div class="col-6">
+                <p class="welcome-name">Welcome Jennifer</p>
+            </div>
+            <div class="col-6 signout text-right">
+                <a href="../"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="ml-2">Sign Out</span></a>
+            </div>
+        </div>
+        <div class="card shadow border-0 account-card">
+            <div class="card-body">
+                <h2 class="mb-3">Your Mortgage</h2>
+                <div class="row border box-payment">
+                    <div class="col-7">
+                        <h4 class="card-title">Upcoming Payment<br> <strong>$1,654.87</strong></h4>
+                    </div>
+                    <div class="col-5 text-right mt-3"><a href="#" class="btn btn-primary btn-lg">Make a Payment »</a></div>
+                    <div class="col-12 mt-3">
+                        <div class="row ml-1 mb-3">
+                            <div class="col-sm">
+                                <p>Payment Due Date:<br><strong>Mar 12, 2020</strong></p>
+                            </div>
+                            <div class="col-sm">
+                                <p>Last Payment Received:<br><strong>Feb 18, 2020</strong></p>
+                            </div>
+                            <div class="col-sm text-center">
+                                <p>Autopay ON<br><a href="#">EDIT</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow border-0 mt-3 account-card">
+            <div class="card-body">
+                <h2 class="mb-2">Activity</h2>
+                <div class="row ">
+                    <div class="col-12">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">March 12</th>
+                                    <td>Your $1,654.87 monthly autopay payment is scheduled.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">February 12</th>
+                                    <td>Your $1,654.87 payment has been applied.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">January 12</th>
+                                    <td colspan="2">Your $1,654.87 payment has been applied.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="#"><button type="button" class="btn btn-light btn-lg">More Activity »</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow border-0 mt-3 account-card">
+            <div class="card-body">
+                <h2 class="mb-2">Mortgage Calculator</h2>
+                <div class="row mr-1 ml-1">
+      <form class="form-horizontal well"  name="MortgageMinder" >
+        <div class="control-group">
+          <label class="control-label">House Price</label>
+          <div class="controls">
+            <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="7" value="750000" name="price"></input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Interest Rate</label>
+          <div class="controls">
+          <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="6" name="ir"></input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Years</label>
+          <div class="controls">
+          <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="30" name="term">
+          </input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Down Payment</label>
+          <div class="controls">
+          <input type="text" size="7" onchange="calculatePayment(this.form)" value="0" name="dp">
+          
+          </input>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+          <input type="button"  class="btn btn-primary btn-large mt-3" onclick="cmdCalc_Click(this.form)" value="Calculate" name="cmdCalc">
+          </input>
+          </div>
+        </div>
+        <hr>
+        <h5 style="letter-spacing:0; margin-top:10px;">Results:</strong></h5>
+        <div class="control-group">
+          <label class="control-label">Mortgage Principle</label>
+          <div class="controls">
+          <input type="text" size="7" placeholder="Automatically Calculated" name="principle">
+          
+          </input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Total Payments</label>
+          <div class="controls">
+          <input type="text" size="6" placeholder="Your Number Of Payments Are" name="payments">
+          
+          </input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Monthly Payment</label>
+          <div class="controls">
+          <input type="text" placeholder="Monthly Payments" size="7" name="pmt">
+          </input>
+          </div>
+        </div>
+
+      </form>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 col">
+        <div class="card border-0">
+            <div class="card-body">
+                <h2>Thinking of a new home?</h2>
+                <a href="../application"><button type="button" class="btn btn-primary mt-1 mb-2">Get Pre-Approved »</button></a>                          
+                <hr>
+                <h2>What are your plans for 2020?</h2>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                  <label class="form-check-label" for="exampleRadios1">
+                    I'm thinking about buying a home
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                  <label class="form-check-label" for="exampleRadios2">
+                    I'm actively searching for a new home
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                  <label class="form-check-label" for="exampleRadios3">
+                    I've found a great home, and I'm ready to make an offer
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                  <label class="form-check-label" for="exampleRadios4">
+                    I'd like to use the value in my home to remodel, consolidate debt or increase my emergency fund
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                  <label class="form-check-label" for="exampleRadios4">
+                    I'm not looking to make any changes right now
+                  </label>
+                </div>
+                <button type="button" class="btn btn-success mt-3 mb-4">Submit</button>
+                <hr>
+                <h2 class="headline headlineC1">We’re here to help</h2>
+                <div class="asideContact">
+                    <p class="description">If you have questions about your Global Home Lending account, <a href="tel:8005552222">call us at 800-555-2222</a></p>
+                    <p class="schedule"><strong>Monday through Friday</strong> 8 a.m. to 8 p.m., Eastern time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="rendered-js">
+function checkForZero(field) {
+  if (field.value == 0 || field.value.length == 0) {
+    alert("This field can't be 0!");
+    field.focus();} else
+
+  calculatePayment(field.form);
+}
+
+function cmdCalc_Click(form) {
+  if (form.price.value == 0 || form.price.value.length == 0) {
+    alert("The Price field can't be 0!");
+    form.price.focus();} else
+  if (form.ir.value == 0 || form.ir.value.length == 0) {
+    alert("The Interest Rate field can't be 0!");
+    form.ir.focus();} else
+  if (form.term.value == 0 || form.term.value.length == 0) {
+    alert("The Term field can't be 0!");
+    form.term.focus();} else
+
+  calculatePayment(form);
+}
+
+function calculatePayment(form) {
+  princ = form.price.value - form.dp.value;
+  intRate = form.ir.value / 100 / 12;
+  months = form.term.value * 12;
+  form.pmt.value = Math.floor(princ * intRate / (1 - Math.pow(1 + intRate, -1 * months)) * 100) / 100;
+  form.principle.value = princ;
+  form.payments.value = months;
+}
+
+    </script>
+<style type='text/css'>
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #005290;
+    font-family: "Arial", sans-serif;
+}
+
+.embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid #005290;
+}
+</style>
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+var initESW = function(gslbBaseURL) {
+    embedded_svc.settings.displayHelpButton = true; 
+    embedded_svc.settings.language = ''; 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+    embedded_svc.settings.entryFeature = 'LiveAgent';
+    var visitor;
+
+    function messageListener(e) {
+        if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
+            var key = e.data.split(':')[1];
+            GLANCE.Cobrowse.Visitor.startSession(key);
+        }
+        if (e.data) {
+            if (e.data.data) {
+                
+                if (e.data.data.event == 'chasitorChatEstablished') {
+                    if (e.data.data.chasitorData) {
+                        var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
+                        console.log('Chat Start - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                
+                else if (e.data.method == 'liveagent.restored') {
+                    if (e.data.data.chasitorSessionData) {
+                        var visitorid =
+                            e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
+                        console.log('Chat Restart - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                
+                else if (e.data.data.event == 'chasitorIdleTimeout') {
+                    if (visitor) {
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+                
+                else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
+                    if (visitor) {
+                        console.log('Chat End');
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+            }
+        }
+    }
+    if (window.addEventListener) {
+        addEventListener('message', messageListener, false);
+    } else {
+        attachEvent('onmessage', messageListener);
+    }
+    embedded_svc.init(
+        'https://chasedemo.my.salesforce.com',
+        'https://chasedemo.secure.force.com/liveAgentSetupFlow',
+        gslbBaseURL,
+        '00D6g0000025fMr',
+        'Sales', {
+            baseLiveAgentContentURL: 'https://c.la1-c2-ia5.salesforceliveagent.com/content',
+            deploymentId: '5726g000000U77j',
+            buttonId: '5736g000000U7oE',
+            baseLiveAgentURL: 'https://d.la1-c2-ia5.salesforceliveagent.com/chat',
+            eswLiveAgentDevName: 'Sales',
+            isOfflineSupportEnabled: true
+        }
+    );
+};
+if (!window.embedded_svc) {
+    var s = document.createElement('script');
+    s.setAttribute('src', 'https://chasedemo.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+    s.onload = function() {
+        initESW(null);
+    };
+    document.body.appendChild(s);
+} else {
+    initESW('https://service.force.com');
+}
+</script></p>
+
+</div>
+
+	        </div>
+      	</div>
+<footer id="sticky-footer" class="page-footer font-small pt-4">
+
+  
+  <div class="container text-center">
+        <a href="../application"><h4 class="mb-1">Get Prequalified »</h4></a>
+        <a href="javascript:;" glance_button="startSession" class="green-border"><span>Cobrowse with Agent</span></a>
+  </div>
+  
+
+  
+  <div class="footer-copyright text-center py-3">© 2020 Copyright 
+    <a href="https://ww2.glance.net" target="_blank"> Glance Networks, Inc.</a> | <a href="https://ww2.glance.net/privacy-policy/" target="_blank">Privacy Policy</a> | <a href=https://ww2.glance.net/terms/ target="_blank">Privacy/Terms </a></p>
+  </div>
+
+  
+</footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Global Home Lending"
+theme = "glancedemo"
+relativeURLs = true
+
+[menu]
+  [[menu.main]]
+    identifier = "account"
+    name = "Accounts"
+    url = "/accounts/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "apply"
+    name = "Apply"
+    url = "/application/"
+    weight = 3
+
+pygmentsCodeFences = true
+pygmentsUseClasses = true

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Global Home Lending</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Global Home Lending</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Dec 2019 17:12:32 -0500</lastBuildDate>
+    
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sample_post</title>
+      <link>/posts/sample_post/</link>
+      <pubDate>Mon, 30 Dec 2019 17:12:32 -0500</pubDate>
+      
+      <guid>/posts/sample_post/</guid>
+      <description>One of the things I&#39;m very interested in is writing words and seeing them on the page. .embeddedServiceHelpButton .helpButton .uiButton { background-color: #005290; font-family: &#34;Arial&#34;, sans-serif; } .embeddedServiceHelpButton .helpButton .uiButton:focus { outline: 1px solid #005290; }   var initESW = function(gslbBaseURL) { embedded_svc.settings.displayHelpButton = true; embedded_svc.settings.language = &#39;&#39;; embedded_svc.settings.enabledFeatures = [&#39;LiveAgent&#39;]; embedded_svc.settings.entryFeature = &#39;LiveAgent&#39;; var visitor; function messageListener(e) { if (typeof e.data === &#39;string&#39; &amp;&amp; e.data.indexOf(&#39;startSession&#39;) == 0) { var key = e.</description>
+    </item>
+    
+  </channel>
+</rss>

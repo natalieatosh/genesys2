@@ -1,0 +1,68 @@
+body {
+	font-family: $font-main;
+	min-height: 100vh;
+}
+
+
+// Sticky Footer Classes
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
+
+footer {
+	background: $main-color;
+	color: #fff;
+	// margin-top: 30px;
+	a {
+		color: #4cd5ff;
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+h1,h2,h3, h4 {
+	font-weight: 700;
+	padding: 10px 0;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+h5 {
+	font-weight: 700;
+	font-size: 1rem;
+	color: $main-color;
+	padding: 10px 0;
+	letter-spacing: 0.09rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	color: $main-color;
+}
+
+p {
+	font-size: 1.095rem;
+}
+
+.card-img-top {
+	border: none;
+	p {
+		font-size: 0.9rem;
+	}
+}
+
+.jumbotron {
+	color: #fff;
+	border-radius: 0;
+  position: relative;
+}

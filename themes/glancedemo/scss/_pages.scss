@@ -1,0 +1,43 @@
+$enable-responsive-font-sizes: true;
+
+//Application
+
+.application {
+		legend {
+			font-size: 1.1rem;
+			font-weight: 700;
+			color: $main-color;
+		}
+		form {
+			width: 100%;
+		}
+	}
+
+.pdf-guide {
+	font-weight: inherit;
+	font-size: 1.1rem;
+	a {
+		color: #fff;
+	}
+}
+
+//Accounts
+
+ .account-card {
+    .card-title {
+        font-weight: 400;
+    }
+    .box-payment {
+        background-color: #f7f7f7;
+        margin: 3px 0;
+    }
+    p {
+        font-size: 0.85rem
+    }
+}
+
+.form-horizontal {
+	input[type="text"] {
+		min-width: 500px;		
+	}
+}
