@@ -7,4 +7,3 @@ bgImage: "about-us.jpg"
 ---
 {{< sc_gcode-notloggedin >}}
 {{< sc_about >}}
-{{< sc_salesforce >}}

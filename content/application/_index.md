@@ -11,4 +11,3 @@ When you connect with us, you'll be one step closer to owning a new home. After 
 
 Please complete the fields below and click "Continue."
 {{< sc_start-application >}}
-{{< sc_salesforce >}}
