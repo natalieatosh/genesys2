@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head><script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
 	<meta name="generator" content="Hugo 0.62.0" />
   <title>Global Home Lending</title>
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
@@ -27,7 +28,7 @@
 
   <link rel="stylesheet" href="./css/theme.css"/>
 
-  <link rel="shortcut icon" type="image/png" href="./img/favicon.png"/> 
+  <link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
 
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
@@ -35,6 +36,13 @@
   </style>
 
 </head><body class="d-flex flex-column">
+	<script>
+            const appConfig = {
+                accountSid:"AC91f89e5d5e04366152c8e62572134fd7",
+                flexFlowSid:"FO69eef6e849903fa7cfed2005524615ae"
+            };
+            Twilio.FlexWebChat.renderWebChat(appConfig);
+        </script>
     	  <div id="page-content"><header id="header" class="header clearfix">
     <div class="bg-gradient">
         <div class="bg-solid bluebg">
@@ -47,32 +55,32 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="./accounts/" title="">Accounts</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="./about/" title="">About</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="./application/" title="">Apply</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="./contact/" title="">Contact</a>
                                 </li>
-                                
-                                
+
+
                             </ul>
                         </div>
                     </nav>
@@ -89,14 +97,14 @@ data-groupid="20885" data-site="production"
 data-presence="api" agentvideo=1 charset="UTF-8"></script>
 
 <script>
-  function change() 
+  function change()
 {
     var elem = document.getElementById("welcometag");
     if (elem.innerText=="Welcome") elem.innerText = "Welcome Jennifer";
     else elem.innerText = "Welcome";
     var signinbtn = document.getElementById("loginjen");
     if (signinbtn.textContent=="Log out") signinbtn.textContent = "Sign in";
-    else signinbtn.textContent = "Log out";    
+    else signinbtn.textContent = "Log out";
 }
 </script>
 <form id="login">
@@ -183,20 +191,20 @@ data-presence="api" agentvideo=1 charset="UTF-8"></script>
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
 var initESW = function(gslbBaseURL) {
-    embedded_svc.settings.displayHelpButton = true; 
-    embedded_svc.settings.language = ''; 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    embedded_svc.settings.displayHelpButton = true;
+    embedded_svc.settings.language = '';
+
+
+
+
+
+
+
+
+
+
+
+
     embedded_svc.settings.enabledFeatures = ['LiveAgent'];
     embedded_svc.settings.entryFeature = 'LiveAgent';
     var visitor;
@@ -208,7 +216,7 @@ var initESW = function(gslbBaseURL) {
         }
         if (e.data) {
             if (e.data.data) {
-                
+
                 if (e.data.data.event == 'chasitorChatEstablished') {
                     if (e.data.data.chasitorData) {
                         var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
@@ -220,7 +228,7 @@ var initESW = function(gslbBaseURL) {
                         visitor.connect();
                     }
                 }
-                
+
                 else if (e.data.method == 'liveagent.restored') {
                     if (e.data.data.chasitorSessionData) {
                         var visitorid =
@@ -233,14 +241,14 @@ var initESW = function(gslbBaseURL) {
                         visitor.connect();
                     }
                 }
-                
+
                 else if (e.data.data.event == 'chasitorIdleTimeout') {
                     if (visitor) {
                         visitor.disconnect();
                         GLANCE.Cobrowse.Visitor.stopSession();
                     }
                 }
-                
+
                 else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
                     if (visitor) {
                         console.log('Chat End');
@@ -287,19 +295,19 @@ if (!window.embedded_svc) {
       	</div>
 <footer id="sticky-footer" class="page-footer font-small pt-4">
 
-  
+
   <div class="container text-center">
         <a href="./application"><h4 class="mb-1">Get Prequalified »</h4></a>
         <a href="javascript:;" glance_button="startSession" class="green-border"><span>Cobrowse with Agent</span></a>
   </div>
-  
 
-  
-  <div class="footer-copyright text-center py-3">© 2020 Copyright 
+
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright
     <a href="https://ww2.glance.net" target="_blank"> Glance Networks, Inc.</a> | <a href="https://ww2.glance.net/privacy-policy/" target="_blank">Privacy Policy</a> | <a href=https://ww2.glance.net/terms/ target="_blank">Privacy/Terms </a></p>
   </div>
 
-  
+
 </footer>
 </body>
 </html>
