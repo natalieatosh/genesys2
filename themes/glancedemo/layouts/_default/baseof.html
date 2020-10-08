@@ -2,6 +2,13 @@
 <html>
     {{- partial "head.html" . -}}
     <body class="d-flex flex-column">
+            <script>
+            const appConfig = {
+                accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
+                flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae"
+            };
+            Twilio.FlexWebChat.renderWebChat(appConfig);
+            </script>        
     	  <div id="page-content">
 	        {{- partial "header.html" . -}}
 	        <div id="content">
