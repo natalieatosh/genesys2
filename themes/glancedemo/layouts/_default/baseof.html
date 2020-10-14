@@ -10,7 +10,8 @@
                 data-groupid=21223
                 data-site=production
                 data-presence=api
-                agentvideo=1></script>
+                agentvideo=1>
+        </script>
         <script>
          const appConfig = {
           accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
@@ -24,12 +25,10 @@
                 manager.strings.WelcomeMessage = "Glance Twilio Flex Webchat";
                 webchat.init();
                 // GLANCE PRESENCE CODE HERE:
-                let visitor = new GLANCE.Presence.Visitor();
-                visitor.prototype.presence({
+                GLANCE.Presence.Visitor({
                     groupid: 21223,
                     visitorid: manager.channel_sid
                 });
-                visitor.connect();
             });
         </script>
 
