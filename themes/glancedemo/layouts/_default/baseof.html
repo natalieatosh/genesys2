@@ -20,9 +20,9 @@
               flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
               context: {
                  friendlyName: "Jennifer Smith",
-                 visitorid: 776655
+                 visitorid: visitor_id
               }
-           };
+            };
             Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
                const { manager } = webchat;
                 manager.strings.WelcomeMessage = "Glance Twilio Flex Webchat";
