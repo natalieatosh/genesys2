@@ -19,8 +19,8 @@ jQuery.ready(() => {
        console.log("presence error:", e);
       };
       visitor.presence({
-       data : { mydata : “abc”, myotherdata : 99999 },
-       onsuccess: function () { console.log(“presence success”); }
+       data : { mydata : "abc", myotherdata : 99999 },
+       onsuccess: function () { console.log("presence success"); }
        // errors will be reported through onerror event
       });
       visitor.onsignal = function (msg) {
