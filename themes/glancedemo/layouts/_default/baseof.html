@@ -12,31 +12,27 @@
                 data-presence=api
                 agentvideo=1></script>
         <script>
-           const visitor_id = (Math.floor(100000 + Math.random() * 900000));
-           console.log(visitor_id);
-           const appConfig = {
-              accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
-              flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
-              context: {
-                 friendlyName: "Jennifer Smith",
-                 visitorid: visitor_id
-              }
-            };
+         const appConfig = {
+          accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
+          flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
+          context: {
+           friendlyName: "Jennifer Smith",
+          }
+         };
             Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
-               const { manager } = webchat;
+             const { manager } = webchat;
                 manager.strings.WelcomeMessage = "Glance Twilio Flex Webchat";
                 webchat.init();
                 // GLANCE PRESENCE CODE HERE:
                 let visitor = new GLANCE.Presence.Visitor();
                 visitor.prototype.presence({
                     groupid: 21223,
-                    visitorid: visitor_id
+                    visitorid: manager.channel_sid
                 });
                 visitor.connect();
             });
         </script>
 
-       
     	<div id="page-content">
 	        {{- partial "header.html" . -}}
 	        <div id="content">
