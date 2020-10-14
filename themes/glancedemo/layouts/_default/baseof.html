@@ -2,14 +2,43 @@
 <html>
     {{- partial "head.html" . -}}
     <body class="d-flex flex-column">
-            <script>
-            const appConfig = {
-                accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
-                flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae"
-            };
-            Twilio.FlexWebChat.renderWebChat(appConfig);
-            </script>        
-    	  <div id="page-content">
+
+        <script id=glance-cobrowse
+                type=text/javascript
+                src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
+                data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
+                data-groupid=21223
+                data-visitorid=776655
+                data-site=production
+                data-presence=on
+                agentvideo=1></script>
+        <script>
+           const visitor_id = (Math.floor(100000 + Math.random() * 900000));
+           console.log(visitor_id);
+           const appConfig = {
+              accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
+              flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
+              context: {
+                 friendlyName: "Jennifer Smith",
+                 visitorid: 776655
+              }
+           };
+            Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
+               const { manager } = webchat;
+                manager.strings.WelcomeMessage = "Glance Twilio Flex Webchat";
+                webchat.init();
+                // GLANCE PRESENCE CODE HERE:
+                let visitor = new GLANCE.Presence.Visitor();
+                visitor.prototype.presence({
+                    groupid: 21223,
+                    visitorid: visitor_id
+                });
+                visitor.connect();
+            });
+        </script>
+
+       
+    	<div id="page-content">
 	        {{- partial "header.html" . -}}
 	        <div id="content">
 	        {{- block "main" . }}{{- end }}
