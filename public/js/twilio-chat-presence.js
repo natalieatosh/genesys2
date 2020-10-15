@@ -8,13 +8,13 @@ jQuery(window).ready(()=> {
             startEngagementOnInit: true
           };
             console.log('Twilio Web Chat');
-​
+
           Twilio.FlexWebChat.createWebChat(appConfig)
                 .then(webchat => {
                     const { manager } = webchat;
-​
+
                     webchat.init();
-​
+
                     return manager;
               })
                 .then(manager => {
@@ -41,7 +41,7 @@ jQuery(window).ready(()=> {
                   console.log("received signal:", e);
                 };
                 visitor.connect(); // not sure this is needed now because .presence() connects
-​
+
               });
             })
 });
