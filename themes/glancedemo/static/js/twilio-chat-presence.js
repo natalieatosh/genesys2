@@ -1,4 +1,4 @@
-Query(window).ready(()=> {
+jQuery(window).ready(()=> {
   const appConfig = {
       accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
       flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
