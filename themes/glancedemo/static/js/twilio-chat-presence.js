@@ -33,9 +33,8 @@ Query(window).ready(()=> {
               console.log("received signal:", e);
             };
             visitor.connect(); // not sure this is needed now because .presence() connects
-​
+
           });
-​
       webchat.init();
     });
 });
