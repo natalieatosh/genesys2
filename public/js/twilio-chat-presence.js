@@ -1,5 +1,4 @@
-jQuery.ready(() => {
-  const appConfig = {
+const appConfig = {
     accountSid: "AC91f89e5d5e04366152c8e62572134fd7",
     flexFlowSid: "FO69eef6e849903fa7cfed2005524615ae",
     context: {
@@ -19,13 +18,12 @@ jQuery.ready(() => {
        console.log("presence error:", e);
       };
       visitor.presence({
-       data : { mydata : “abc”, myotherdata : 99999 },
-       onsuccess: function () { console.log(“presence success”); }
+       data : { mydata : "abc", myotherdata : 99999 },
+       onsuccess: function () { console.log("presence success"); }
        // errors will be reported through onerror event
       });
       visitor.onsignal = function (msg) {
        console.log("received signal:", e);
       };
       visitor.connect(); // not sure this is needed now because .presence() connects
-  });  
-})
+  });
