@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-  <title>Connect with Us</title>
+  <title>Sign into your account</title>
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +44,7 @@
 
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
-  <link rel="alternate" type="application/rss+xml+xml" href="../contact/index.xml" title="Global Home Lending" />
+  <link rel="alternate" type="application/rss+xml+xml" href="../signin/index.xml" title="Global Home Lending" />
   </style>
 </head><body class="d-flex flex-column">
     	<div id="page-content"><header id="header" class="header clearfix">
@@ -81,7 +81,7 @@
                                 
                                 
                                 
-                                <li class="navbar-item  active">
+                                <li class="navbar-item ">
                                     <a class="nav-link" href="../contact/" title="">Contact</a>
                                 </li>
                                 
@@ -96,74 +96,142 @@
 </header>
 <div id="content">
 <script id="glance-cobrowse" type="text/javascript"
-src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
 data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
-data-groupid="21223" data-site="production"
+data-groupid="20885" data-site="production"
 data-presence="on" data-visitorid="776655" agentvideo=1 charset="UTF-8"></script>
-<div class="jumbotron" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(/img/agent.jpg); -webkit-background-size: cover; background-position: center center; height: 300px" >
-  <div class="container">
-      <h1>Connect with Us</h1>
-  </div>
-</div>
+
+<div class="page-signin">
 <div class="container">
-    <div class="row">
-        
-        <div class="col-md-6 mt-3 contact-widget-section2 wow animated fadeInLeft" data-wow-delay=".2s">
-            <h2>We're here to help</h2>
-            <p>Connect with a lending specialist and start your journey into a new home.</p>
-            <div class="find-widget">
-                Company: <a href="https://hostriver.ro">Global Home Lending</a>
-            </div>
-            <div class="find-widget">
-                Address: <a href="#">4435 Berkshire Circle Knoxville</a>
-            </div>
-            <div class="find-widget">
-                Phone: <a href="#">800-555-2222</a>
-            </div>
-            <div class="find-widget">
-                Website: <a href="https://chasehldemo.glance.net/">chasehldemo.glance.net</a>
-            </div>
-            <div class="find-widget">
-                Program: <a href="#">Mon to Sat: 09:30 AM - 10.30 PM</a>
-            </div>
-        </div>
-        
-        <div class="col-md-6 wow animated fadeInRight" data-wow-delay=".2s">
-            <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
-                
-                <div class="form-group label-floating">
-                    <label class="control-label" for="name">Name</label>
-                    <input class="form-control" id="name" type="text" name="name" required data-error="Please enter your name">
-                    <div class="help-block with-errors"></div>
-                </div>
-                
-                <div class="form-group label-floating">
-                    <label class="control-label" for="email">Email</label>
-                    <input class="form-control" id="email" type="email" name="email" required data-error="Please enter your Email">
-                    <div class="help-block with-errors"></div>
-                </div>
-                
-                <div class="form-group label-floating">
-                    <label class="control-label">Subject</label>
-                    <input class="form-control" id="msg_subject" type="text" name="subject" required data-error="Please enter your message subject">
-                    <div class="help-block with-errors"></div>
-                </div>
-                
-                <div class="form-group label-floating">
-                    <label for="message" class="control-label">Message</label>
-                    <textarea class="form-control" rows="3" id="message" name="message" required data-error="Write your message"></textarea>
-                    <div class="help-block with-errors"></div>
-                </div>
-                
-                <div class="form-submit mt-5">
-                    <button class="btn btn-success" type="submit" id="form-submit"><i class="material-icons mdi mdi-message-outline"></i> Send Message</button>
-                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                    <div class="clearfix"></div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <form id="login-mobile">
+      <h2 id="welcometag">Welcome</h2>
+      <div class="form-group">
+        <input type="userName" value="Jennifer Smith" class="form-control" id="userName" aria-describedby="userHelp" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <input type="password" value="••••••••" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+      <a href="../accounts"><button onclick="change()" type="button" id="loginjen" class="btn btn-primary mt-2">Sign in</button></a>
+      <div class="forgot mt-1"><a href="#">Forgot ID/Password? »</a><br><a href="../accounts">Open an Account »</a></div>
+    </form>
 </div>
+</div>
+<style type='text/css'>
+.embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #005290;
+    font-family: "Arial", sans-serif;
+}
+
+.embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid #005290;
+}
+</style>
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+var initESW = function(gslbBaseURL) {
+    embedded_svc.settings.displayHelpButton = true; 
+    embedded_svc.settings.language = ''; 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+    embedded_svc.settings.entryFeature = 'LiveAgent';
+    var visitor;
+
+    function messageListener(e) {
+        if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
+            var key = e.data.split(':')[1];
+            GLANCE.Cobrowse.Visitor.startSession(key);
+        }
+        if (e.data) {
+            if (e.data.data) {
+                
+                if (e.data.data.event == 'chasitorChatEstablished') {
+                    if (e.data.data.chasitorData) {
+                        var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
+                        console.log('Chat Start - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                
+                else if (e.data.method == 'liveagent.restored') {
+                    if (e.data.data.chasitorSessionData) {
+                        var visitorid =
+                            e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
+                        console.log('Chat Restart - visitorid=' + visitorid);
+                        visitor = new GLANCE.Presence.Visitor({
+                            groupid: 20885,
+                            visitorid: visitorid
+                        });
+                        visitor.connect();
+                    }
+                }
+                
+                else if (e.data.data.event == 'chasitorIdleTimeout') {
+                    if (visitor) {
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+                
+                else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
+                    if (visitor) {
+                        console.log('Chat End');
+                        visitor.disconnect();
+                        GLANCE.Cobrowse.Visitor.stopSession();
+                    }
+                }
+            }
+        }
+    }
+    if (window.addEventListener) {
+        addEventListener('message', messageListener, false);
+    } else {
+        attachEvent('onmessage', messageListener);
+    }
+    embedded_svc.init(
+        'https://chasedemo.my.salesforce.com',
+        'https://chasedemo.secure.force.com/liveAgentSetupFlow',
+        gslbBaseURL,
+        '00D6g0000025fMr',
+        'Sales', {
+            baseLiveAgentContentURL: 'https://c.la1-c2-ia5.salesforceliveagent.com/content',
+            deploymentId: '5726g000000U77j',
+            buttonId: '5736g000000U7oE',
+            baseLiveAgentURL: 'https://d.la1-c2-ia5.salesforceliveagent.com/chat',
+            eswLiveAgentDevName: 'Sales',
+            isOfflineSupportEnabled: true
+        }
+    );
+};
+if (!window.embedded_svc) {
+    var s = document.createElement('script');
+    s.setAttribute('src', 'https://chasedemo.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+    s.onload = function() {
+        initESW(null);
+    };
+    document.body.appendChild(s);
+} else {
+    initESW('https://service.force.com');
+}
+</script>
 
 	        </div>
       	</div>

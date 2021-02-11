@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
 
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+<script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
+<script id=glance-cobrowse
+  type=text/javascript
+  src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
+  data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
+  data-groupid=21223
+  data-site=production
+  data-presence=api
+  agentvideo=1>
+</script>
+<script src="../../js/twilio-chat-presence.js"></script>
+
 <style type='text/css'>
     .embeddedServiceHelpButton .helpButton .uiButton {
         background-color: #005290;
@@ -31,15 +45,15 @@
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
   </style>
-
 </head><body class="d-flex flex-column">
-    	  <div id="page-content"><header id="header" class="header clearfix">
+    	<div id="page-content"><header id="header" class="header clearfix">
     <div class="bg-gradient">
         <div class="bg-solid bluebg">
             <div class="inner">
                 <div class="container top-nav">
                     <nav class="navbar navbar-expand-lg navbar-dark">
                         <a class="navbar-brand" href="../../"><img src="../../img/global-logo.svg" alt="Global Home Lending"></a>
+                        <div class="signin"><a href="../../signin">Sign In</a></div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -84,9 +98,9 @@
   <h1 class="mt-4">Mortgage Prequalification Request</h1>
 
   <p><script id="glance-cobrowse" type="text/javascript"
-src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
 data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
-data-groupid="20885" data-site="production"
+data-groupid="21223" data-site="production"
 data-presence="api" agentvideo=1 charset="UTF-8"></script>
 <div class="row">
     <div class="col col-md-9 mb-5">
@@ -114,119 +128,7 @@ data-presence="api" agentvideo=1 charset="UTF-8"></script>
         <p>Download this helpful guide to learn what you need to know about applying for a mortgage.</p>
         <p><button type="button" class="btn btn-success btn-md pdf-guide"><a href="../../pdf/LeadingGuide.pdf" target="_blank"><i class="fas fa-file-pdf mr-2"></i> Home Lending Guide</a></button></p>
     </div>
-</div>
-<style type='text/css'>
-.embeddedServiceHelpButton .helpButton .uiButton {
-    background-color: #005290;
-    font-family: "Arial", sans-serif;
-}
-
-.embeddedServiceHelpButton .helpButton .uiButton:focus {
-    outline: 1px solid #005290;
-}
-</style>
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-var initESW = function(gslbBaseURL) {
-    embedded_svc.settings.displayHelpButton = true; 
-    embedded_svc.settings.language = ''; 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-    embedded_svc.settings.entryFeature = 'LiveAgent';
-    var visitor;
-
-    function messageListener(e) {
-        if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
-            var key = e.data.split(':')[1];
-            GLANCE.Cobrowse.Visitor.startSession(key);
-        }
-        if (e.data) {
-            if (e.data.data) {
-                
-                if (e.data.data.event == 'chasitorChatEstablished') {
-                    if (e.data.data.chasitorData) {
-                        var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
-                        console.log('Chat Start - visitorid=' + visitorid);
-                        visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
-                            visitorid: visitorid
-                        });
-                        visitor.connect();
-                    }
-                }
-                
-                else if (e.data.method == 'liveagent.restored') {
-                    if (e.data.data.chasitorSessionData) {
-                        var visitorid =
-                            e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
-                        console.log('Chat Restart - visitorid=' + visitorid);
-                        visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
-                            visitorid: visitorid
-                        });
-                        visitor.connect();
-                    }
-                }
-                
-                else if (e.data.data.event == 'chasitorIdleTimeout') {
-                    if (visitor) {
-                        visitor.disconnect();
-                        GLANCE.Cobrowse.Visitor.stopSession();
-                    }
-                }
-                
-                else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
-                    if (visitor) {
-                        console.log('Chat End');
-                        visitor.disconnect();
-                        GLANCE.Cobrowse.Visitor.stopSession();
-                    }
-                }
-            }
-        }
-    }
-    if (window.addEventListener) {
-        addEventListener('message', messageListener, false);
-    } else {
-        attachEvent('onmessage', messageListener);
-    }
-    embedded_svc.init(
-        'https://chasedemo.my.salesforce.com',
-        'https://chasedemo.secure.force.com/liveAgentSetupFlow',
-        gslbBaseURL,
-        '00D6g0000025fMr',
-        'Sales', {
-            baseLiveAgentContentURL: 'https://c.la1-c2-ia5.salesforceliveagent.com/content',
-            deploymentId: '5726g000000U77j',
-            buttonId: '5736g000000U7oE',
-            baseLiveAgentURL: 'https://d.la1-c2-ia5.salesforceliveagent.com/chat',
-            eswLiveAgentDevName: 'Sales',
-            isOfflineSupportEnabled: true
-        }
-    );
-};
-if (!window.embedded_svc) {
-    var s = document.createElement('script');
-    s.setAttribute('src', 'https://chasedemo.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-    s.onload = function() {
-        initESW(null);
-    };
-    document.body.appendChild(s);
-} else {
-    initESW('https://service.force.com');
-}
-</script></p>
+</div></p>
 
 </div>
 

@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
 
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+<script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
+<script id=glance-cobrowse
+  type=text/javascript
+  src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
+  data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
+  data-groupid=21223
+  data-site=production
+  data-presence=api
+  agentvideo=1>
+</script>
+<script src="../js/twilio-chat-presence.js"></script>
+
 <style type='text/css'>
     .embeddedServiceHelpButton .helpButton .uiButton {
         background-color: #005290;
@@ -32,15 +46,15 @@
 
   <link rel="alternate" type="application/rss+xml+xml" href="../accounts/index.xml" title="Global Home Lending" />
   </style>
-
 </head><body class="d-flex flex-column">
-    	  <div id="page-content"><header id="header" class="header clearfix">
+    	<div id="page-content"><header id="header" class="header clearfix">
     <div class="bg-gradient">
         <div class="bg-solid bluebg">
             <div class="inner">
                 <div class="container top-nav">
                     <nav class="navbar navbar-expand-lg navbar-dark">
                         <a class="navbar-brand" href="../"><img src="../img/global-logo.svg" alt="Global Home Lending"></a>
+                        <div class="signin"><a href="../signin">Sign In</a></div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -85,12 +99,12 @@
   <h1 class="mt-4">Your Account</h1>
 
   <p><script id="glance-cobrowse" type="text/javascript"
-src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21223&site=production"
 data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
-data-groupid="20885" data-site="production"
-data-presence="on" data-visitorid="75001234" agentvideo=1 charset="UTF-8"></script>
+data-groupid="21223" data-site="production"
+data-visitor="776655" agentvideo=1 charset="UTF-8"></script>
 <script>
- 
+     
 var dmForm = document.getElementById('dm-form-container');
 var dmChart = document.getElementById('dm-chart-container');
 
@@ -345,9 +359,8 @@ function drawChart() {
   chart.draw(data, options);
 }    
 </script>
-
 <div class="row">
-    <div class="col-8 col-sm">
+    <div class="col-md-7 col-12">
         <div class="row welcome">
             <div class="col-6">
                 <p class="welcome-name">Welcome Jennifer</p>
@@ -360,10 +373,10 @@ function drawChart() {
             <div class="card-body">
                 <h2 class="mb-3">Your Mortgage</h2>
                 <div class="row border box-payment">
-                    <div class="col-7">
+                    <div class="col-md-7 col-6">
                         <h4 class="card-title">Upcoming Payment<br> <strong>$1,654.87</strong></h4>
                     </div>
-                    <div class="col-5 text-right mt-3"><a href="#" class="btn btn-primary btn-lg">Make a Payment »</a></div>
+                    <div class="col-md-5 col-6 text-right mt-3"><a href="#" class="btn btn-primary btn-lg payment-btn">Make a Payment »</a></div>
                     <div class="col-12 mt-3">
                         <div class="row ml-1 mb-3">
                             <div class="col-sm">
@@ -372,7 +385,7 @@ function drawChart() {
                             <div class="col-sm">
                                 <p>Last Payment Received:<br><strong>Feb 18, 2020</strong></p>
                             </div>
-                            <div class="col-sm text-center">
+                            <div class="col-sm text-center auto-pay">
                                 <p>Autopay ON<br><a href="#">EDIT</a></p>
                             </div>
                         </div>
@@ -407,118 +420,107 @@ function drawChart() {
                 </div>
             </div>
         </div>
-
         <div class="card shadow border-0 mt-3 account-card">
             <div class="card-body">
                 <h2 class="mb-2">Mortgage Calculator</h2>
                 <div class="row mr-1 ml-1">
-      <form class="form-horizontal well"  name="MortgageMinder" >
-        <div class="control-group">
-          <label class="control-label">House Price</label>
-          <div class="controls">
-            <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="7" value="750000" name="price"></input>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Interest Rate</label>
-          <div class="controls">
-          <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="6" name="ir"></input>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Years</label>
-          <div class="controls">
-          <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="30" name="term">
-          </input>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Down Payment</label>
-          <div class="controls">
-          <input type="text" size="7" onchange="calculatePayment(this.form)" value="0" name="dp">
-          
-          </input>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-          <input type="button"  class="btn btn-primary btn-large mt-3" onclick="cmdCalc_Click(this.form)" value="Calculate" name="cmdCalc">
-          </input>
-          </div>
-        </div>
-        <hr>
-        <h5 style="letter-spacing:0; margin-top:10px;">Results:</strong></h5>
-        <div class="control-group">
-          <label class="control-label">Mortgage Principle</label>
-          <div class="controls">
-          <input type="text" size="7" placeholder="Automatically Calculated" name="principle">
-          
-          </input>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Total Payments</label>
-          <div class="controls">
-          <input type="text" size="6" placeholder="Your Number Of Payments Are" name="payments">
-          
-          </input>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">Monthly Payment</label>
-          <div class="controls">
-          <input type="text" placeholder="Monthly Payments" size="7" name="pmt">
-          </input>
-          </div>
-        </div>
-
-      </form>
-
-
-
-
-
+                    <form class="form-horizontal well" name="MortgageMinder">
+                        <div class="control-group">
+                            <label class="control-label">House Price</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="7" value="750000" name="price"></input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Interest Rate</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="6" name="ir"></input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Years</label>
+                            <div class="controls">
+                                <input type="text" onchange="checkForZero(this)" onblur="checkForZero(this)" size="4" value="30" name="term">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Down Payment</label>
+                            <div class="controls">
+                                <input type="text" size="7" onchange="calculatePayment(this.form)" value="0" name="dp">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="button" class="btn btn-primary btn-large mt-3" onclick="cmdCalc_Click(this.form)" value="Calculate" name="cmdCalc">
+                                </input>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 style="letter-spacing:0; margin-top:10px;">Results:</strong></h5>
+                        <div class="control-group">
+                            <label class="control-label">Mortgage Principle</label>
+                            <div class="controls">
+                                <input type="text" size="7" placeholder="Automatically Calculated" name="principle">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Total Payments</label>
+                            <div class="controls">
+                                <input type="text" size="6" placeholder="Your Number Of Payments Are" name="payments">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Monthly Payment</label>
+                            <div class="controls">
+                                <input type="text" placeholder="Monthly Payments" size="7" name="pmt">
+                                </input>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-4 col">
+    <div class="col-md-4 col-12">
         <div class="card border-0">
             <div class="card-body">
                 <h2>Thinking of a new home?</h2>
-                <a href="../application"><button type="button" class="btn btn-primary mt-1 mb-2">Get Pre-Approved »</button></a>                          
+                <a href="../application"><button type="button" class="btn btn-primary mt-1 mb-2">Get Pre-Approved »</button></a>
                 <hr>
                 <h2>What are your plans for 2020?</h2>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                  <label class="form-check-label" for="exampleRadios1">
-                    I'm thinking about buying a home
-                  </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1">
+                        I'm thinking about buying a home
+                    </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                  <label class="form-check-label" for="exampleRadios2">
-                    I'm actively searching for a new home
-                  </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        I'm actively searching for a new home
+                    </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                  <label class="form-check-label" for="exampleRadios3">
-                    I've found a great home, and I'm ready to make an offer
-                  </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3">
+                        I've found a great home, and I'm ready to make an offer
+                    </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                  <label class="form-check-label" for="exampleRadios4">
-                    I'd like to use the value in my home to remodel, consolidate debt or increase my emergency fund
-                  </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                        I'd like to use the value in my home to remodel, consolidate debt or increase my emergency fund
+                    </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                  <label class="form-check-label" for="exampleRadios4">
-                    I'm not looking to make any changes right now
-                  </label>
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4">
+                        I'm not looking to make any changes right now
+                    </label>
                 </div>
                 <button type="button" class="btn btn-success mt-3 mb-4">Submit</button>
                 <hr>
@@ -533,148 +535,40 @@ function drawChart() {
 </div>
 <script id="rendered-js">
 function checkForZero(field) {
-  if (field.value == 0 || field.value.length == 0) {
-    alert("This field can't be 0!");
-    field.focus();} else
+    if (field.value == 0 || field.value.length == 0) {
+        alert("This field can't be 0!");
+        field.focus();
+    } else
 
-  calculatePayment(field.form);
+        calculatePayment(field.form);
 }
 
 function cmdCalc_Click(form) {
-  if (form.price.value == 0 || form.price.value.length == 0) {
-    alert("The Price field can't be 0!");
-    form.price.focus();} else
-  if (form.ir.value == 0 || form.ir.value.length == 0) {
-    alert("The Interest Rate field can't be 0!");
-    form.ir.focus();} else
-  if (form.term.value == 0 || form.term.value.length == 0) {
-    alert("The Term field can't be 0!");
-    form.term.focus();} else
+    if (form.price.value == 0 || form.price.value.length == 0) {
+        alert("The Price field can't be 0!");
+        form.price.focus();
+    } else
+    if (form.ir.value == 0 || form.ir.value.length == 0) {
+        alert("The Interest Rate field can't be 0!");
+        form.ir.focus();
+    } else
+    if (form.term.value == 0 || form.term.value.length == 0) {
+        alert("The Term field can't be 0!");
+        form.term.focus();
+    } else
 
-  calculatePayment(form);
+        calculatePayment(form);
 }
 
 function calculatePayment(form) {
-  princ = form.price.value - form.dp.value;
-  intRate = form.ir.value / 100 / 12;
-  months = form.term.value * 12;
-  form.pmt.value = Math.floor(princ * intRate / (1 - Math.pow(1 + intRate, -1 * months)) * 100) / 100;
-  form.principle.value = princ;
-  form.payments.value = months;
+    princ = form.price.value - form.dp.value;
+    intRate = form.ir.value / 100 / 12;
+    months = form.term.value * 12;
+    form.pmt.value = Math.floor(princ * intRate / (1 - Math.pow(1 + intRate, -1 * months)) * 100) / 100;
+    form.principle.value = princ;
+    form.payments.value = months;
 }
 
-    </script>
-<style type='text/css'>
-.embeddedServiceHelpButton .helpButton .uiButton {
-    background-color: #005290;
-    font-family: "Arial", sans-serif;
-}
-
-.embeddedServiceHelpButton .helpButton .uiButton:focus {
-    outline: 1px solid #005290;
-}
-</style>
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-var initESW = function(gslbBaseURL) {
-    embedded_svc.settings.displayHelpButton = true; 
-    embedded_svc.settings.language = ''; 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-    embedded_svc.settings.entryFeature = 'LiveAgent';
-    var visitor;
-
-    function messageListener(e) {
-        if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
-            var key = e.data.split(':')[1];
-            GLANCE.Cobrowse.Visitor.startSession(key);
-        }
-        if (e.data) {
-            if (e.data.data) {
-                
-                if (e.data.data.event == 'chasitorChatEstablished') {
-                    if (e.data.data.chasitorData) {
-                        var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
-                        console.log('Chat Start - visitorid=' + visitorid);
-                        visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
-                            visitorid: visitorid
-                        });
-                        visitor.connect();
-                    }
-                }
-                
-                else if (e.data.method == 'liveagent.restored') {
-                    if (e.data.data.chasitorSessionData) {
-                        var visitorid =
-                            e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
-                        console.log('Chat Restart - visitorid=' + visitorid);
-                        visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
-                            visitorid: visitorid
-                        });
-                        visitor.connect();
-                    }
-                }
-                
-                else if (e.data.data.event == 'chasitorIdleTimeout') {
-                    if (visitor) {
-                        visitor.disconnect();
-                        GLANCE.Cobrowse.Visitor.stopSession();
-                    }
-                }
-                
-                else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
-                    if (visitor) {
-                        console.log('Chat End');
-                        visitor.disconnect();
-                        GLANCE.Cobrowse.Visitor.stopSession();
-                    }
-                }
-            }
-        }
-    }
-    if (window.addEventListener) {
-        addEventListener('message', messageListener, false);
-    } else {
-        attachEvent('onmessage', messageListener);
-    }
-    embedded_svc.init(
-        'https://chasedemo.my.salesforce.com',
-        'https://chasedemo.secure.force.com/liveAgentSetupFlow',
-        gslbBaseURL,
-        '00D6g0000025fMr',
-        'Sales', {
-            baseLiveAgentContentURL: 'https://c.la1-c2-ia5.salesforceliveagent.com/content',
-            deploymentId: '5726g000000U77j',
-            buttonId: '5736g000000U7oE',
-            baseLiveAgentURL: 'https://d.la1-c2-ia5.salesforceliveagent.com/chat',
-            eswLiveAgentDevName: 'Sales',
-            isOfflineSupportEnabled: true
-        }
-    );
-};
-if (!window.embedded_svc) {
-    var s = document.createElement('script');
-    s.setAttribute('src', 'https://chasedemo.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-    s.onload = function() {
-        initESW(null);
-    };
-    document.body.appendChild(s);
-} else {
-    initESW('https://service.force.com');
-}
 </script></p>
 
 </div>

@@ -33,7 +33,7 @@
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>/signin/</loc>
     <lastmod>2019-12-30T19:43:38-05:00</lastmod>
   </url>
   
@@ -58,6 +58,10 @@
   
   <url>
     <loc>/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
   </url>
   
   <url>
