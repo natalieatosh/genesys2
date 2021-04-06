@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html><head>
   <title>Sign into your account</title>
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
 
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
 <script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
 
 <script src="../js/twilio-chat-presence.js"></script>
@@ -32,7 +32,7 @@
 
   <link rel="stylesheet" href="../css/theme.css"/>
 
-  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/> 
+  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
@@ -52,32 +52,32 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../accounts/" title="">Accounts</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../about/" title="">About</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../application/" title="">Apply</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../contact/" title="">Contact</a>
                                 </li>
-                                
-                                
+
+
                             </ul>
                         </div>
                     </nav>
@@ -88,9 +88,9 @@
 </header>
 <div id="content">
 <script id="glance-cobrowse" type="text/javascript"
-src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=20885&site=production"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21355&site=production"
 data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
-data-groupid="20885" data-site="production"
+data-groupid="21355" data-site="production"
 data-presence="on" data-visitorid="776655" agentvideo=1 charset="UTF-8"></script>
 
 <div class="page-signin">
@@ -125,20 +125,20 @@ data-presence="on" data-visitorid="776655" agentvideo=1 charset="UTF-8"></script
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
 var initESW = function(gslbBaseURL) {
-    embedded_svc.settings.displayHelpButton = true; 
-    embedded_svc.settings.language = ''; 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    embedded_svc.settings.displayHelpButton = true;
+    embedded_svc.settings.language = '';
+
+
+
+
+
+
+
+
+
+
+
+
     embedded_svc.settings.enabledFeatures = ['LiveAgent'];
     embedded_svc.settings.entryFeature = 'LiveAgent';
     var visitor;
@@ -150,39 +150,39 @@ var initESW = function(gslbBaseURL) {
         }
         if (e.data) {
             if (e.data.data) {
-                
+
                 if (e.data.data.event == 'chasitorChatEstablished') {
                     if (e.data.data.chasitorData) {
                         var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
                         console.log('Chat Start - visitorid=' + visitorid);
                         visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
+                            groupid: 21355,
                             visitorid: visitorid
                         });
                         visitor.connect();
                     }
                 }
-                
+
                 else if (e.data.method == 'liveagent.restored') {
                     if (e.data.data.chasitorSessionData) {
                         var visitorid =
                             e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
                         console.log('Chat Restart - visitorid=' + visitorid);
                         visitor = new GLANCE.Presence.Visitor({
-                            groupid: 20885,
+                            groupid: 21355,
                             visitorid: visitorid
                         });
                         visitor.connect();
                     }
                 }
-                
+
                 else if (e.data.data.event == 'chasitorIdleTimeout') {
                     if (visitor) {
                         visitor.disconnect();
                         GLANCE.Cobrowse.Visitor.stopSession();
                     }
                 }
-                
+
                 else if (e.data.data.event == 'chasitorAgentChatEnded' || e.data.data.event == 'chasitorChasitorChatEnded') {
                     if (visitor) {
                         console.log('Chat End');
@@ -229,19 +229,19 @@ if (!window.embedded_svc) {
       	</div>
 <footer id="sticky-footer" class="page-footer font-small pt-4">
 
-  
+
   <div class="container text-center">
         <a href="../application"><h4 class="mb-1">Get Prequalified »</h4></a>
         <a href="javascript:;" glance_button="startSession" class="green-border"><span>Cobrowse with Agent</span></a>
   </div>
-  
 
-  
-  <div class="footer-copyright text-center py-3">© 2020 Copyright 
+
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright
     <a href="https://ww2.glance.net" target="_blank"> Glance Networks, Inc.</a> | <a href="https://ww2.glance.net/privacy-policy/" target="_blank">Privacy Policy</a> | <a href=https://ww2.glance.net/terms/ target="_blank">Privacy/Terms </a></p>
   </div>
 
-  
+
 </footer>
 </body>
 </html>
