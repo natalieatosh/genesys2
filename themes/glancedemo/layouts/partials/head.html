@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
 
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
 <script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
 
 <script src="/js/twilio-chat-presence.js"></script>
@@ -31,12 +31,11 @@
 
   <link rel="stylesheet" href="/css/theme.css"/>
 
-  <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/> 
+  <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
 
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
   {{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.Suffix .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
 
 </style>
