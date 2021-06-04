@@ -1,6 +1,6 @@
 jQuery(window).ready(()=> {
           const appConfig = {
-            accountSid: " ACb9151d8cf55541876ece4a5b06516d86",
+            accountSid: "ACb9151d8cf55541876ece4a5b06516d86",
             flexFlowSid: "FOe0451856979b50710238b302ac650187",
            context: {
             friendlyName: /* is logged in ? then = Jennifer Smith, else = anonymous */
