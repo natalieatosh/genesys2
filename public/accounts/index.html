@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html><head>
   <title>Your Account</title>
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="noindex,nofollow">
 
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
 <script src="https://assets.flex.twilio.com/releases/flex-webchat-ui/2.6.0/twilio-flex-webchat.min.js"></script>
 
 <script src="../js/twilio-chat-presence.js"></script>
@@ -32,7 +32,7 @@
 
   <link rel="stylesheet" href="../css/theme.css"/>
 
-  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/> 
+  <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 
   <script src="https://kit.fontawesome.com/f2ede3f84d.js" crossorigin="anonymous"></script>
 
@@ -52,32 +52,32 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item  active">
                                     <a class="nav-link" href="../accounts/" title="">Accounts</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../about/" title="">About</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../application/" title="">Apply</a>
                                 </li>
-                                
-                                
-                                
+
+
+
                                 <li class="navbar-item ">
                                     <a class="nav-link" href="../contact/" title="">Contact</a>
                                 </li>
-                                
-                                
+
+
                             </ul>
                         </div>
                     </nav>
@@ -91,71 +91,71 @@
   <h1 class="mt-4">Your Account</h1>
 
   <p><script id="glance-cobrowse" type="text/javascript"
-src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21355&site=production"
+src="https://www.glancecdn.net/cobrowse/CobrowseJS.ashx?group=21456&site=production"
 data-inputevents='{"ctrl-13":"showButton","shift-13":"startSession"}'
-data-groupid="21355" data-site="production"
+data-groupid="21456" data-site="production"
 data-visitor="776655" agentvideo=1 charset="UTF-8"></script>
 <script>
-     
+
 var dmForm = document.getElementById('dm-form-container');
 var dmChart = document.getElementById('dm-chart-container');
 
- 
+
 var dmSubmit = document.getElementById('dm-submit');
 
- 
+
 var dmAmountRegex = /^\d+(\.\d{2})?$/;
 var dmRateRegex = /^\d+(\.\d{2})?$/;
 var dmTermRegex = /^\d{1,2}$/;
 
- 
+
 var endAnimation = ['webkitAnimationEnd', 'mozAnimationEnd', 'MSAnimationEnd', 'oanimationend', 'animationend'];
 
- 
+
 var dmPrinciple;
 var dmInterest;
 
- 
-var dmEmptyError = document.getElementById('dm-empty'); 
 
- 
+var dmEmptyError = document.getElementById('dm-empty');
+
+
 function submitForm() {
     dmSubmit.onclick = function dmCalculate() {
-         
+
         var dmAmount = document.getElementById('dm-amount').value;
         var dmRate = document.getElementById('dm-rate').value;
         var dmTerm = document.getElementById('dm-term').value;
         var dmPaymentFrequency = document.getElementById('dm-payment-frequency').value;
 
-        var dmAmountValidate = validateAmount(dmAmount); 
-        var dmRateValidate = validateRate(dmRate); 
-        var dmTermValidate = validateTerm(dmTerm); 
+        var dmAmountValidate = validateAmount(dmAmount);
+        var dmRateValidate = validateRate(dmRate);
+        var dmTermValidate = validateTerm(dmTerm);
 
         if (dmAmountValidate === true && dmRateValidate === true && dmTermValidate === true) {
 
-           
-          dmPrinciple = Number(dmAmount); 
 
-           
+          dmPrinciple = Number(dmAmount);
+
+
           dmCalculatePayment(dmAmount, dmRate, dmTerm, dmPaymentFrequency);
 
-           
-          dmForm.className = "dm-form-container dm-animated fadeOutDown"; 
 
-          
+          dmForm.className = "dm-form-container dm-animated fadeOutDown";
 
-          for (var i = 0; i < endAnimation.length; i++) { 
+
+
+          for (var i = 0; i < endAnimation.length; i++) {
             one(dmForm, endAnimation[i], function(event) {
-              dmForm.className = "dm-form-container dm-hidden"; 
-              dmChart.className = "dm-chart-container dm-animated fadeInDown"; 
-              drawChart(); 
+              dmForm.className = "dm-form-container dm-hidden";
+              dmChart.className = "dm-chart-container dm-animated fadeInDown";
+              drawChart();
             });
-          } 
-        } 
-      } 
-  } 
+          }
+        }
+      }
+  }
 
- 
+
 function one(element, eventName, callback) {
   element.addEventListener(eventName, function handler(event) {
     element.removeEventListener(eventName, handler);
@@ -163,147 +163,147 @@ function one(element, eventName, callback) {
   });
 }
 
- 
+
 function dmCalculatePayment(amount, rate, term, frequency) {
     var monthlyPayment;
     var yearlyPayment;
-    var monthlyRate = (Number(rate) / 100) / 12; 
-    var numMonths = Number(term) * 12; 
+    var monthlyRate = (Number(rate) / 100) / 12;
+    var numMonths = Number(term) * 12;
     amount = Number(amount);
 
-    
+
     monthlyPayment = amount * ((monthlyRate * (Math.pow((1 + monthlyRate), numMonths))) / (Math.pow((1 + monthlyRate), numMonths) - 1));
 
-    
+
     if (frequency === 'monthly') {
-      
+
       document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + monthlyPayment.toFixed(2) + '</span> per month';
 
-      
+
       yearlyPayment = monthlyPayment * (numMonths);
-      
+
       document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
 
-      
+
       dmInterest = yearlyPayment - amount;
       dmInterest = Number(dmInterest.toFixed(2));
     } else if (frequency === 'semimonthly') {
       var semiMonthlyPayment = monthlyPayment / 2;
 
-      
+
       document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + semiMonthlyPayment.toFixed(2) + '</span> twice per month';
 
-      
+
       yearlyPayment = monthlyPayment * (numMonths);
-      
+
       document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
 
-      
+
       dmInterest = yearlyPayment - amount;
       dmInterest = Number(dmInterest.toFixed(2));
     } else if (frequency === 'weekly') {
       var weeklyPayment = (monthlyPayment * 12) / 52;
 
-      
+
       document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + weeklyPayment.toFixed(2) + '</span> per week';
 
-      
+
       yearlyPayment = monthlyPayment * (numMonths);
-      
+
       document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
 
-      
+
       dmInterest = yearlyPayment - amount;
       dmInterest = Number(dmInterest.toFixed(2));
     } else if (frequency === 'biweekly') {
       var biweeklyPayment = (monthlyPayment * 12) / 26;
 
-      
+
       document.getElementById('dm-monthly-payment').innerHTML = '<span class="dm-bold">$' + biweeklyPayment.toFixed(2) + '</span> every two weeks';
 
-      
+
       yearlyPayment = monthlyPayment * (numMonths);
-      
+
       document.getElementById('dm-overall-payment').innerHTML = '$' + yearlyPayment.toFixed(2);
 
-      
+
       dmInterest = yearlyPayment - amount;
       dmInterest = Number(dmInterest.toFixed(2));
     }
-  } 
+  }
 
- 
-function validateAmount(amount) { 
-    var dmAmountBox = document.getElementById('dm-amount'); 
+
+function validateAmount(amount) {
+    var dmAmountBox = document.getElementById('dm-amount');
     var dmAmountError = document.getElementById('dm-amount-error');
-    var validation = false; 
+    var validation = false;
 
-    dmAmountError.className = "dm-error dm-hidden"; 
+    dmAmountError.className = "dm-error dm-hidden";
 
-    if (amount === '') { 
-      dmAmountBox.className = 'dm-form-input dm-highlight-box'; 
-      dmEmptyError.className = 'dm-error'; 
-    } else { 
-      if (dmAmountRegex.test(amount)) { 
-        dmAmountBox.className = 'dm-form-input'; 
-        validation = true; 
-      } else { 
-        dmAmountBox.className = 'dm-form-input dm-highlight-box'; 
-        dmAmountError.className = 'dm-error'; 
+    if (amount === '') {
+      dmAmountBox.className = 'dm-form-input dm-highlight-box';
+      dmEmptyError.className = 'dm-error';
+    } else {
+      if (dmAmountRegex.test(amount)) {
+        dmAmountBox.className = 'dm-form-input';
+        validation = true;
+      } else {
+        dmAmountBox.className = 'dm-form-input dm-highlight-box';
+        dmAmountError.className = 'dm-error';
         validation = false;
       }
     }
 
     return validation;
-  } 
+  }
 
-function validateRate(rate) { 
-    var dmRateBox = document.getElementById('dm-rate'); 
+function validateRate(rate) {
+    var dmRateBox = document.getElementById('dm-rate');
     var dmRateError = document.getElementById('dm-rate-error');
-    var validation = false; 
+    var validation = false;
 
-    dmRateError.className = "dm-error dm-hidden"; 
+    dmRateError.className = "dm-error dm-hidden";
 
-    if (rate === '') { 
-      dmRateBox.className = 'dm-form-input dm-highlight-box'; 
-      dmEmptyError.className = 'dm-error'; 
-    } else { 
-      if (dmRateRegex.test(rate)) { 
-        dmRateBox.className = 'dm-form-input'; 
-        validation = true; 
-      } else { 
-        dmRateBox.className = 'dm-form-input dm-highlight-box'; 
-        dmRateError.className = 'dm-error'; 
+    if (rate === '') {
+      dmRateBox.className = 'dm-form-input dm-highlight-box';
+      dmEmptyError.className = 'dm-error';
+    } else {
+      if (dmRateRegex.test(rate)) {
+        dmRateBox.className = 'dm-form-input';
+        validation = true;
+      } else {
+        dmRateBox.className = 'dm-form-input dm-highlight-box';
+        dmRateError.className = 'dm-error';
         validation = false;
       }
     }
 
     return validation;
-  } 
+  }
 
-function validateTerm(term) { 
-    var dmTermBox = document.getElementById('dm-term'); 
+function validateTerm(term) {
+    var dmTermBox = document.getElementById('dm-term');
     var dmTermError = document.getElementById('dm-term-error');
-    var validation = false; 
+    var validation = false;
 
-    dmTermError.className = "dm-error dm-hidden"; 
+    dmTermError.className = "dm-error dm-hidden";
 
-    if (term === '') { 
-      dmTermBox.className = 'dm-form-input dm-highlight-box'; 
-      dmEmptyError.className = 'dm-error'; 
-    } else { 
-      if (dmTermRegex.test(term)) { 
-        dmTermBox.className = 'dm-form-input'; 
-        validation = true; 
-      } else { 
-        dmTermBox.className = 'dm-form-input dm-highlight-box'; 
-        dmTermError.className = 'dm-error'; 
+    if (term === '') {
+      dmTermBox.className = 'dm-form-input dm-highlight-box';
+      dmEmptyError.className = 'dm-error';
+    } else {
+      if (dmTermRegex.test(term)) {
+        dmTermBox.className = 'dm-form-input';
+        validation = true;
+      } else {
+        dmTermBox.className = 'dm-form-input dm-highlight-box';
+        dmTermError.className = 'dm-error';
         validation = false;
       }
     }
 
     return validation;
-  } 
+  }
 
 
 
@@ -314,7 +314,7 @@ google.load('visualization', '1.0', {
 });
 
 
- 
+
 if(dmSubmit) {
   google.setOnLoadCallback(submitForm);
 }
@@ -324,7 +324,7 @@ if(dmSubmit) {
 
 function drawChart() {
 
-  
+
   var data = google.visualization.arrayToDataTable([
     ['Payment', 'Principle ($)', 'Interest ($)', {
       role: 'annotation'
@@ -332,7 +332,7 @@ function drawChart() {
     ['Mortgage Term', dmPrinciple, dmInterest, '']
   ]);
 
-  
+
   var options = {
     'width': 250,
     'height': 300,
@@ -346,10 +346,10 @@ function drawChart() {
     isStacked: true
   };
 
-  
+
   var chart = new google.visualization.ColumnChart(document.getElementById('dm-chart'));
   chart.draw(data, options);
-}    
+}
 </script>
 <div class="row">
     <div class="col-md-7 col-12">
@@ -569,19 +569,19 @@ function calculatePayment(form) {
       	</div>
 <footer id="sticky-footer" class="page-footer font-small pt-4">
 
-  
+
   <div class="container text-center">
         <a href="../application"><h4 class="mb-1">Get Prequalified »</h4></a>
         <a href="javascript:;" glance_button="startSession" class="green-border"><span>Cobrowse with Agent</span></a>
   </div>
-  
 
-  
-  <div class="footer-copyright text-center py-3">© 2020 Copyright 
+
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright
     <a href="https://ww2.glance.net" target="_blank"> Glance Networks, Inc.</a> | <a href="https://ww2.glance.net/privacy-policy/" target="_blank">Privacy Policy</a> | <a href=https://ww2.glance.net/terms/ target="_blank">Privacy/Terms </a></p>
   </div>
 
-  
+
 </footer>
 </body>
 </html>
